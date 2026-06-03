@@ -1,0 +1,84 @@
+name: Heartbeat
+
+# The Heirloom License's "publicly verifiable signal of continued maintenance"
+# (Section 4(a)) is recorded as a JSONL append to `heartbeat.log`. Each commit
+# is authored by github-actions[bot], which GitHub independently verifies; the
+# Verified badge on every commit IS the cryptographic proof the license refers
+# to.
+#
+# This workflow fires from FOUR triggers, each producing a distinct entry kind:
+#   - schedule (monthly cron) → kind: "monthly"
+#   - workflow_dispatch (manual) → kind: "manual"
+#   - release.published → kind: "release", with the tag name
+#   - repository_dispatch from the private source repo → kind: "commit", with
+#     the private-repo SHA
+#
+# Why all four: a stale schedule cron alone could mask actual abandonment if
+# the GitHub account stays alive but development stops. Tying heartbeats to
+# private-repo commits via repository_dispatch ties the signal to real work.
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'         # 1st of every month, 00:00 UTC
+  workflow_dispatch:             # manual via Actions UI
+  release:
+    types: [published]
+  repository_dispatch:
+    types: [private-repo-commit] # see private repo's .github/workflows/heartbeat-dispatch.yml
+
+permissions:
+  contents: write                # need to push to main
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Append heartbeat entry
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          PRIVATE_SHA: ${{ github.event.client_payload.sha }}
+        run: |
+          set -euo pipefail
+          TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          # Normalize the trigger name into our taxonomy.
+          case "$EVENT_NAME" in
+            schedule)            KIND="monthly" ;;
+            workflow_dispatch)   KIND="manual" ;;
+            release)             KIND="release" ;;
+            repository_dispatch) KIND="commit" ;;
+            *)                   KIND="$EVENT_NAME" ;;
+          esac
+
+          # Build the JSONL line. jq guarantees safe escaping of any string value.
+          if [ "$KIND" = "release" ]; then
+            jq -nc --arg ts "$TS" --arg kind "$KIND" --arg version "$RELEASE_TAG" \
+              '{ts: $ts, kind: $kind, version: $version}' >> heartbeat.log
+          elif [ "$KIND" = "commit" ]; then
+            jq -nc --arg ts "$TS" --arg kind "$KIND" --arg sha "$PRIVATE_SHA" \
+              '{ts: $ts, kind: $kind, sha: $sha}' >> heartbeat.log
+          else
+            jq -nc --arg ts "$TS" --arg kind "$KIND" \
+              '{ts: $ts, kind: $kind}' >> heartbeat.log
+          fi
+
+          echo "Appended heartbeat: $(tail -1 heartbeat.log)"
+
+      - name: Commit + push
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add heartbeat.log
+          # Don't fail the run if there's nothing to commit (defensive).
+          if git diff --cached --quiet; then
+            echo "No change to commit."
+            exit 0
+          fi
+          git commit -m "heartbeat: ${{ github.event_name }}"
+          git push

@@ -1,0 +1,43 @@
+name: Feature request
+description: Suggest something Memophant could do that it doesn't yet.
+labels: [enhancement, triage]
+title: "[feature] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Memophant has a deliberate scope. Features that fit the "command center
+        for repo-resident AI project memory" framing have the best chance.
+        Features that turn Memophant into a different category of app probably
+        don't — but it's still useful to know.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the situation that makes you want this feature.
+      placeholder: When I'm doing X, I find Y painful because…
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you want Memophant to do?
+      description: A sketch is fine. Concrete UI / behavior helps but isn't required.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What do you do today instead? (optional)
+      description: Workarounds, other tools, scripts you've written.
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirm
+      options:
+        - label: I searched existing issues to see if this has been discussed
+          required: true

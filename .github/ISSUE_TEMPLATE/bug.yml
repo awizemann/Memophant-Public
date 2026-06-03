@@ -1,0 +1,62 @@
+name: Bug report
+description: Something in Memophant is broken or behaves unexpectedly.
+labels: [bug, triage]
+title: "[bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing. Please include enough detail that the issue can be
+        reproduced — vague reports tend to sit untouched longer than they should.
+
+  - type: input
+    id: version
+    attributes:
+      label: Memophant version
+      description: Memophant menu → About Memophant → Version
+      placeholder: "0.1.0 (build 42)"
+    validations:
+      required: true
+
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      description: Apple menu → About This Mac
+      placeholder: "macOS 15.4 / Apple Silicon"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what happened instead?
+      placeholder: |
+        Steps:
+        1. ...
+        2. ...
+
+        Expected: ...
+        Actual: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / screenshots (optional)
+      description: |
+        If Memophant crashed, paste the crash log (Console.app → Crash Reports
+        → Memophant). Otherwise screenshots of the unexpected behavior help.
+      render: shell
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirm
+      options:
+        - label: I searched existing issues to make sure this isn't already filed
+          required: true
+        - label: This isn't a security issue (those go to security@memophant.co per SECURITY.md)
+          required: true

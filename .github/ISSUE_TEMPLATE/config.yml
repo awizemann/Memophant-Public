@@ -1,0 +1,11 @@
+# Issue templates for memophant-public. Blank issues disabled to nudge reporters
+# toward the templated forms — the security-disclosures route stays separate
+# from the public tracker (see SECURITY.md).
+blank_issues_enabled: false
+contact_links:
+  - name: Security disclosure (private)
+    url: https://github.com/awizemann/memophant-public/blob/main/.github/SECURITY.md
+    about: Don't file security issues here. Email security@memophant.co with the details.
+  - name: General support / press / partnerships
+    url: mailto:hello@memophant.co
+    about: For non-bug questions, mailto:hello@memophant.co reaches the same inbox.
