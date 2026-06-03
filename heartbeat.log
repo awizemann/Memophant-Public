@@ -1,2 +1,2 @@
 {"ts":"2026-06-03T00:00:00Z","kind":"bootstrap","license":"HL-1.0-MPL2.0-12mo","note":"Heirloom Heartbeat Record initialized. Future entries are appended by .github/workflows/heartbeat.yml on schedule, release, manual dispatch, and private-repo commit. Each commit to this file is authored by github-actions[bot] and verified by GitHub."}
-{"ts":"2026-06-03T23:51:03Z","kind":"commit","sha":"a8fab9117a157c60cd24613d713d1544696a39b4"}
+{"ts":"2026-06-03T23:51:03Z","kind":"commit","sha":"a8fab9117a157c60cd24613d713d1544696a39b4"}{"ts":"2026-06-03T23:53:33Z","kind":"manual"}
