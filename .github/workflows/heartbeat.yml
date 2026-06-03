@@ -73,9 +73,12 @@ jobs:
               '{ts: $ts, kind: $kind}')
           fi
 
-          # Append entry. The existing CONTENT already has a trailing newline from the
-          # decode, so we just concatenate ENTRY + newline.
-          NEW=$(printf '%s%s\n' "$CONTENT" "$ENTRY")
+          # Append entry. Bash command substitution `$(...)` strips trailing newlines
+          # from the GET → base64 -d output, so CONTENT is always rtrimmed of '\n'
+          # regardless of how the file was stored. We explicitly add the separator
+          # newline between CONTENT and ENTRY so consecutive entries can never smush
+          # onto the same line.
+          NEW=$(printf '%s\n%s' "$CONTENT" "$ENTRY")
 
           # Base64-encode the FULL new file (no line wrapping — the API takes a single
           # base64 string).
