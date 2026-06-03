@@ -2,9 +2,11 @@ name: Heartbeat
 
 # The Heirloom License's "publicly verifiable signal of continued maintenance"
 # (Section 4(a)) is recorded as a JSONL append to `heartbeat.log`. Each commit
-# is authored by github-actions[bot], which GitHub independently verifies; the
-# Verified badge on every commit IS the cryptographic proof the license refers
-# to.
+# is authored by github-actions[bot] AND signed by GitHub's web-flow key —
+# committing via the Contents API (PUT /repos/.../contents/{path}) is the
+# documented path to get the green "Verified" badge from a workflow. The plain
+# `git commit + push` path does NOT sign, even when the author identity is the
+# bot.
 #
 # This workflow fires from FOUR triggers, each producing a distinct entry kind:
 #   - schedule (monthly cron) → kind: "monthly"
@@ -24,27 +26,29 @@ on:
   release:
     types: [published]
   repository_dispatch:
-    types: [private-repo-commit] # see private repo's .github/workflows/heartbeat-dispatch.yml
+    types: [private-repo-commit] # fired by the private repo's heartbeat-dispatch workflow
 
 permissions:
-  contents: write                # need to push to main
+  contents: write                # needed by the Contents API PUT
 
 jobs:
   heartbeat:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-
-      - name: Append heartbeat entry
+      - name: Append heartbeat entry via Contents API (GitHub-signed)
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EVENT_NAME: ${{ github.event_name }}
           RELEASE_TAG: ${{ github.event.release.tag_name }}
           PRIVATE_SHA: ${{ github.event.client_payload.sha }}
         run: |
           set -euo pipefail
-          TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          # Fetch the current file blob (need the SHA for the optimistic-concurrency
+          # check on PUT). The raw content base64-decodes to the existing JSONL.
+          CURRENT=$(gh api "/repos/${{ github.repository }}/contents/heartbeat.log")
+          BLOB_SHA=$(printf '%s' "$CURRENT" | jq -r '.sha')
+          CONTENT=$(printf '%s' "$CURRENT" | jq -r '.content' | base64 -d)
 
           # Normalize the trigger name into our taxonomy.
           case "$EVENT_NAME" in
@@ -55,30 +59,40 @@ jobs:
             *)                   KIND="$EVENT_NAME" ;;
           esac
 
+          TS=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
           # Build the JSONL line. jq guarantees safe escaping of any string value.
           if [ "$KIND" = "release" ]; then
-            jq -nc --arg ts "$TS" --arg kind "$KIND" --arg version "$RELEASE_TAG" \
-              '{ts: $ts, kind: $kind, version: $version}' >> heartbeat.log
+            ENTRY=$(jq -nc --arg ts "$TS" --arg kind "$KIND" --arg version "$RELEASE_TAG" \
+              '{ts: $ts, kind: $kind, version: $version}')
           elif [ "$KIND" = "commit" ]; then
-            jq -nc --arg ts "$TS" --arg kind "$KIND" --arg sha "$PRIVATE_SHA" \
-              '{ts: $ts, kind: $kind, sha: $sha}' >> heartbeat.log
+            ENTRY=$(jq -nc --arg ts "$TS" --arg kind "$KIND" --arg sha "$PRIVATE_SHA" \
+              '{ts: $ts, kind: $kind, sha: $sha}')
           else
-            jq -nc --arg ts "$TS" --arg kind "$KIND" \
-              '{ts: $ts, kind: $kind}' >> heartbeat.log
+            ENTRY=$(jq -nc --arg ts "$TS" --arg kind "$KIND" \
+              '{ts: $ts, kind: $kind}')
           fi
 
-          echo "Appended heartbeat: $(tail -1 heartbeat.log)"
+          # Append entry. The existing CONTENT already has a trailing newline from the
+          # decode, so we just concatenate ENTRY + newline.
+          NEW=$(printf '%s%s\n' "$CONTENT" "$ENTRY")
 
-      - name: Commit + push
-        run: |
-          set -euo pipefail
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add heartbeat.log
-          # Don't fail the run if there's nothing to commit (defensive).
-          if git diff --cached --quiet; then
-            echo "No change to commit."
-            exit 0
-          fi
-          git commit -m "heartbeat: ${{ github.event_name }}"
-          git push
+          # Base64-encode the FULL new file (no line wrapping — the API takes a single
+          # base64 string).
+          NEW_B64=$(printf '%s' "$NEW" | base64 -w 0)
+
+          echo "Appending heartbeat: $ENTRY"
+
+          # PUT via Contents API — GitHub auto-signs commits made this way.
+          # If the blob SHA we passed is stale (concurrent run won the race), this
+          # returns 409 and the workflow fails; the workflow is idempotent on retry.
+          gh api \
+            -X PUT \
+            "/repos/${{ github.repository }}/contents/heartbeat.log" \
+            -f message="heartbeat: ${EVENT_NAME}" \
+            -f content="$NEW_B64" \
+            -f sha="$BLOB_SHA" \
+            -f branch=main \
+            >/dev/null
+
+          echo "Heartbeat committed via Contents API (GitHub-signed)."
