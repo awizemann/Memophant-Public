@@ -1,11 +1,17 @@
-# Issue templates for memophant-public. Blank issues disabled to nudge reporters
-# toward the templated forms — the security-disclosures route stays separate
-# from the public tracker (see SECURITY.md).
+# Issue templates for Memophant-Public. Blank issues disabled to nudge reporters toward the
+# templated bug form — Issues are for confirmed, reproducible bugs ONLY. Questions and feature
+# ideas go to Discussions; security disclosures go to email (see SECURITY.md).
 blank_issues_enabled: false
 contact_links:
+  - name: Ask a question / get help (Discussions → Q&A)
+    url: https://github.com/awizemann/Memophant-Public/discussions/categories/q-a
+    about: For "how do I…" and usage help, start a Q&A discussion — not a bug issue.
+  - name: Request a feature / see the roadmap (Discussions → Ideas)
+    url: https://github.com/awizemann/Memophant-Public/discussions/categories/ideas
+    about: Suggest features and see what's planned in Ideas.
   - name: Security disclosure (private)
-    url: https://github.com/awizemann/memophant-public/blob/main/.github/SECURITY.md
+    url: https://github.com/awizemann/Memophant-Public/blob/main/.github/SECURITY.md
     about: Don't file security issues here. Email security@memophant.co with the details.
-  - name: General support / press / partnerships
+  - name: General / press / partnerships
     url: mailto:hello@memophant.co
-    about: For non-bug questions, mailto:hello@memophant.co reaches the same inbox.
+    about: For non-bug, non-feature questions, mailto:hello@memophant.co reaches the same inbox.

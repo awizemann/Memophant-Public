@@ -15,12 +15,19 @@ center for repo-resident AI project memory.
 | What | Where |
 |---|---|
 | **Download Memophant** | <https://memophant.co> |
+| **Ask a question / get help** | [Discussions → Q&A](https://github.com/awizemann/Memophant-Public/discussions/categories/q-a) |
+| **Request a feature / see what's planned** | [Discussions → Ideas](https://github.com/awizemann/Memophant-Public/discussions/categories/ideas) |
+| **Release announcements** | [Discussions → Announcements](https://github.com/awizemann/Memophant-Public/discussions/categories/announcements) |
+| **Report a confirmed bug** | [Issues](https://github.com/awizemann/Memophant-Public/issues) |
+| **Security disclosures** | [`.github/SECURITY.md`](.github/SECURITY.md) |
 | **License (full text)** | [`LICENSE.md`](LICENSE.md) |
 | **License summary** | <https://memophant.co/license> |
 | **Heirloom Heartbeat Record** | [`heartbeat.log`](heartbeat.log) |
-| **File an issue** | [Issues](https://github.com/awizemann/memophant-public/issues) |
-| **Security disclosures** | [`.github/SECURITY.md`](.github/SECURITY.md) |
-| **Support / press / general** | <mailto:hello@memophant.co> |
+| **Press / partnerships** | <mailto:hello@memophant.co> |
+
+**Support.** Licensed users get direct help in-app and at <mailto:hello@memophant.co>. The public
+[Discussions](https://github.com/awizemann/Memophant-Public/discussions) are for community Q&A,
+feature ideas, and the roadmap; **Issues** are reserved for confirmed, reproducible bugs.
 
 ## The Heirloom guarantee, briefly
 
