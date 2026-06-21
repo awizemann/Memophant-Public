@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Memophant</title>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Sun, 21 Jun 2026 13:30:29 -0400</pubDate>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/awizemann/memophant-public/releases/download/v1.0.0/Memophant-v1.0.0-Universal.zip" length="17597435" type="application/octet-stream" sparkle:edSignature="gCHiuoi9DN8R6m8g+/xwv7oAK/0N7TjkC+koX2OIZHIC/saFPTXvZHKL+L2+4KIh5ep1wqp4UlUuRY1Abhn+Aw=="/>
+        </item>
+    </channel>
+</rss>
