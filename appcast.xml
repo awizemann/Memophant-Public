@@ -3,12 +3,12 @@
     <channel>
         <title>Memophant</title>
         <item>
-            <title>1.0.1</title>
-            <pubDate>Mon, 22 Jun 2026 12:57:47 -0400</pubDate>
-            <sparkle:version>4</sparkle:version>
-            <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
+            <title>1.1.0</title>
+            <pubDate>Fri, 03 Jul 2026 00:48:39 -0400</pubDate>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/awizemann/memophant-public/releases/download/v1.0.1/Memophant-v1.0.1-Universal.zip" length="17604477" type="application/octet-stream" sparkle:edSignature="+GQkpfGlveU/eK2QIpUJU13t5/Dkm32p4Jy64by8FjIlzfPMP64YIIU5Q69Sd+FIkZJPzIIbs8o80pemjMKsCg=="/>
+            <enclosure url="https://github.com/awizemann/memophant-public/releases/download/v1.1.0/Memophant-v1.1.0-Universal.zip" length="47030678" type="application/octet-stream" sparkle:edSignature="vaLPAxCfK33EYzFW02LtSDMFeatE3SVppqoXG/vTYZbM1X1siApjBx843/Fza6JR1pZ2y9kivnV39QvYrhBRDA=="/>
         </item>
     </channel>
 </rss>
