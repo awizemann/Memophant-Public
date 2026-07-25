@@ -113,3 +113,4 @@
 {"ts":"2026-07-25T14:17:08Z","kind":"commit","sha":"c35591ff92e0d50795d97a8150b3408ad8438cc5"}
 {"ts":"2026-07-25T14:21:52Z","kind":"commit","sha":"a8aeea2f882ba0abcc144ad00c3192eb6f8e9fc4"}
 {"ts":"2026-07-25T14:39:33Z","kind":"commit","sha":"9a534d639a1b10c541daac9a6fc54a8f09a0b43c"}
+{"ts":"2026-07-25T14:49:58Z","kind":"release","version":"v1.3.0"}
