@@ -9,6 +9,7 @@
             <sparkle:shortVersionString>1.5.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/awizemann/memophant-public/releases/download/v1.5.0/Memophant-v1.5.0-Universal.zip" length="54029742" type="application/octet-stream" sparkle:edSignature="dtVJbv4lbdpMR4PDSxr5+IUen6QsHVdhMBcB0hZEAwvyuzQe9oC4aMY4hUnImvK1fG+hWKNrvKs2RX8vhy2RAA=="/>
+            <sparkle:releaseNotesLink>https://updates.memophant.co/Memophant-v1.5.0-Universal.html</sparkle:releaseNotesLink>
         </item>
     </channel>
 </rss>
