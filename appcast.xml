@@ -8,8 +8,28 @@
             <sparkle:version>11</sparkle:version>
             <sparkle:shortVersionString>1.5.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h1>Memophant 1.5.0</h1>
+<p>Your project's memory now follows your project. Move or rename a repo folder and Memophant notices, offers to migrate, and carries everything across — and everywhere it <em>can't</em> follow, it now says so out loud instead of quietly doing the wrong thing.</p>
+<p>This is the first app update since 1.4.0, so it also brings you the Project Charter, scan acknowledgments, and the sealed commit door — features that shipped in between, in releases aimed at applications that embed the Memophant engine.</p>
+
+<h2>Folder renames now follow</h2>
+<p>Rename or move a project folder on disk and Memophant offers to migrate it — carrying the search index, review stamps and access history, note anchors, permalinks, and the project's stored credentials across, resumably and safe to interrupt. If it can't finish, it rolls back and tells you rather than leaving you half-moved.</p>
+
+<h2>Anonymous usage analytics — and a real off switch</h2>
+<p>Memophant now reports anonymous, aggregate usage so development can follow what people actually use. Every event is a fixed, closed list of names and counts — there is no code path that <em>could</em> send a file path, a note's contents, or anything you wrote. It's on by default; <strong>Settings → Privacy → "Share anonymous usage statistics"</strong> turns it off, and off is verified: zero bytes on the wire, persisting across restarts.</p>
+
+<h2>A moved folder never fails silently</h2>
+<p>Reads and searches now report when a project's folder is gone; writes refuse and name the problem; document import tells you instead of discarding the file; the Code Browser shows the moved-folder message instead of "no symbols." A healthy project that has simply never been indexed still sets itself up on first use, exactly as before.</p>
+
+<h2>Reliability</h2>
+<ul>
+<li>The MCP health check can no longer hang on first-launch Gatekeeper holds — the status pill and Reinstall button always come back.</li>
+<li>Adopting an existing project keeps its detected name.</li>
+<li>Interrupted renames can't lose review history — with guards so two overlapping renames can't strand a project between names.</li>
+<li>Analytics accuracy fixes, app-side guards for deleted project folders, and roughly seventeen hardening commits from a full pre-release audit.</li>
+</ul>
+]]></description>
             <enclosure url="https://github.com/awizemann/memophant-public/releases/download/v1.5.0/Memophant-v1.5.0-Universal.zip" length="54029742" type="application/octet-stream" sparkle:edSignature="dtVJbv4lbdpMR4PDSxr5+IUen6QsHVdhMBcB0hZEAwvyuzQe9oC4aMY4hUnImvK1fG+hWKNrvKs2RX8vhy2RAA=="/>
-            <sparkle:releaseNotesLink>https://updates.memophant.co/Memophant-v1.5.0-Universal.html</sparkle:releaseNotesLink>
         </item>
     </channel>
 </rss>
