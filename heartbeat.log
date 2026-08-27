@@ -146,3 +146,4 @@
 {"ts":"2026-08-26T20:32:27Z","kind":"commit","sha":"abc87bfc012f0680fbc0f7480832e17c6ba0ff58"}
 {"ts":"2026-08-27T19:21:16Z","kind":"commit","sha":"c3fe14459e50edea50949ba90df54c34d51c006a"}
 {"ts":"2026-08-27T21:42:32Z","kind":"commit","sha":"a9c2aef74969d8a6b6bd7217cbfe913728f4e095"}
+{"ts":"2026-08-27T22:16:56Z","kind":"release","version":"v1.5.0"}
