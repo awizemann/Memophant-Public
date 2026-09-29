@@ -3,39 +3,31 @@
     <channel>
         <title>Memophant</title>
         <item>
-            <title>2.1.0</title>
-            <pubDate>Mon, 07 Sep 2026 14:16:27 -0400</pubDate>
-            <sparkle:version>12</sparkle:version>
-            <sparkle:shortVersionString>2.1.0</sparkle:shortVersionString>
+            <title>2.1.1</title>
+            <pubDate>Tue, 29 Sep 2026 18:06:32 -0400</pubDate>
+            <sparkle:version>14</sparkle:version>
+            <sparkle:shortVersionString>2.1.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h2>Memophant 2.1.0</h2>
-<p>The autonomy release: your project memory now largely maintains itself, and everything the app tells you about that work is honest.</p>
-
-<h3>New</h3>
-<ul>
-  <li><strong>Memory Review window.</strong> Review is a dedicated, resizable window per project. Every item shows the evidence you need: real before/after diffs, conflicts side-by-side, masked context for secret blocks, and staleness banners. Actions stay pinned in view.</li>
-  <li><strong>Charter drafting with Claude.</strong> Claude can draft a project charter — manually or in the background — into a review pen. You remain the only one who can save the charter; every write is secret-scanned.</li>
-  <li><strong>Autonomous Steward for everyone.</strong> Background curation and trusted auto-apply are now on by default, including existing installs (Settings opt-out). Every applied change is one click to revert.</li>
-</ul>
+            <description><![CDATA[<h2>Memophant 2.1.1</h2>
+<p>A stability release: a smoother, more responsive app and a more robust memory engine under heavy use.</p>
 
 <h3>Improved</h3>
 <ul>
-  <li><strong>Counts you can trust.</strong> The "Review N" button, health card, and review window count the same things — a button's number is exactly the rows you'll see. Give-ups are reviewable and clearable.</li>
-  <li><strong>Honest progress.</strong> Drain progress shows what the run will actually do; spot-checks and consolidation report their own phases; the quality signal measures challenges against the fixes they challenge.</li>
-  <li><strong>Faster curation.</strong> One corpus scan per drain, clustered notes with a single verifier pass, and pre-resolved drift evidence.</li>
-  <li><strong>Activity feed accuracy.</strong> Drift rows stop re-announcing on launch and no longer double-count commits across tiers; Steward edits are attributed.</li>
+  <li><strong>Fewer hitches.</strong> The Sessions tier, Code Browser, drift checks, tier lists, repository scans, and previews now do their disk and database work off the main thread. Superseded Code Browser searches are cancelled.</li>
+  <li><strong>Steadier under bursts of writes.</strong> Background follow-up work after each write is capped, so large batches commit several times faster.</li>
 </ul>
 
 <h3>Fixed</h3>
 <ul>
-  <li>Reverting an auto-applied fix now correctly reduces the Steward's trust for that kind of change.</li>
-  <li>The review count could read "Review 39" over an empty list; the backlog is now garbage-collected and surfaced.</li>
-  <li>Detached (browse-only) projects can no longer be written to by any drafting or curation path.</li>
-  <li>Hand-edited instruction files with ambiguous markers are reported instead of silently skipped.</li>
-  <li>Numerous copy fixes so no surface claims more than the app actually did.</li>
+  <li>A slow, late result could appear in the wrong note or project after switching quickly.</li>
+  <li>The MCP tool-call timeout now fires, and calls arriving during a license unlock are no longer dropped.</li>
+  <li>Moving a memory while it was being edited could lose that edit; it is now kept, or the move fails cleanly.</li>
+  <li>Several rare search-index races that could briefly show stale results or mismatched embeddings.</li>
+  <li>The code auto-indexer starts and stops cleanly; overlapping project refreshes are merged, not dropped.</li>
+  <li>A failed model load could trigger a duplicate ~80 MB embedding-model download.</li>
 </ul>
 ]]></description>
-            <enclosure url="https://github.com/awizemann/memophant-public/releases/download/v2.1.0/Memophant-v2.1.0-Universal.zip" length="55456164" type="application/octet-stream" sparkle:edSignature="95J5j3yq9pyw4CB0qrWdQWqW1ZzMg1em1xYGtKxUEz9EwJaFITncidMo5iITZNdUOHkGH+KqM0/D3qKRx6+LDQ=="/>
+            <enclosure url="https://github.com/awizemann/memophant-public/releases/download/v2.1.1/Memophant-v2.1.1-Universal.zip" length="55614462" type="application/octet-stream" sparkle:edSignature="P9xTGEUDtIZflGLkLmNQFYBxukgriVvVZz9AD8+fNOfmAcxdvLk97WZ0jS+Qk8Smhygwx4iK3Ldyy4wq1kjWDQ=="/>
         </item>
     </channel>
 </rss>
