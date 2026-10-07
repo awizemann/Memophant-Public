@@ -3,31 +3,36 @@
     <channel>
         <title>Memophant</title>
         <item>
-            <title>2.1.1</title>
-            <pubDate>Tue, 29 Sep 2026 18:06:32 -0400</pubDate>
-            <sparkle:version>14</sparkle:version>
-            <sparkle:shortVersionString>2.1.1</sparkle:shortVersionString>
+            <title>3.1.0</title>
+            <pubDate>Tue, 06 Oct 2026 20:40:41 -0400</pubDate>
+            <sparkle:version>15</sparkle:version>
+            <sparkle:shortVersionString>3.1.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h2>Memophant 2.1.1</h2>
-<p>A stability release: a smoother, more responsive app and a more robust memory engine under heavy use.</p>
+            <description><![CDATA[<h2>Memophant 3.1.0</h2>
+<p>Better search, a much more complete code index, and safer memory editing by agents. (There is no 3.0 of the app — the number moves up because the memory engine underneath changed how several things behave.)</p>
 
 <h3>Improved</h3>
 <ul>
-  <li><strong>Fewer hitches.</strong> The Sessions tier, Code Browser, drift checks, tier lists, repository scans, and previews now do their disk and database work off the main thread. Superseded Code Browser searches are cancelled.</li>
-  <li><strong>Steadier under bursts of writes.</strong> Background follow-up work after each write is capped, so large batches commit several times faster.</li>
+  <li><strong>Search finds what you mean.</strong> File names like <code>ProcessRunner.swift</code> find the notes that mention them, nonsense queries return nothing, AND / OR / NOT are taken literally, and scores are 0–1 everywhere.</li>
+  <li><strong>Code search finds much more.</strong> Declarations with attributes like <code>@State</code> or <code>@Test</code> are now indexed, partial names match, and results rank more sensibly. The code index rebuilds once, and reindexing is much faster.</li>
+  <li><strong>Safer note editing by agents.</strong> Agents can only edit, move or retire a note they name exactly; a partial or ambiguous name is refused rather than guessed.</li>
+  <li><strong>Links stay pointed where you put them.</strong> Moves and renames only update links to the moved note, cleanup no longer re-points links to a merely similar title, and ambiguous links are flagged in Memory Health. Accented titles resolve correctly.</li>
 </ul>
 
 <h3>Fixed</h3>
 <ul>
-  <li>A slow, late result could appear in the wrong note or project after switching quickly.</li>
-  <li>The MCP tool-call timeout now fires, and calls arriving during a license unlock are no longer dropped.</li>
-  <li>Moving a memory while it was being edited could lose that edit; it is now kept, or the move fails cleanly.</li>
-  <li>Several rare search-index races that could briefly show stale results or mismatched embeddings.</li>
-  <li>The code auto-indexer starts and stops cleanly; overlapping project refreshes are merged, not dropped.</li>
-  <li>A failed model load could trigger a duplicate ~80 MB embedding-model download.</li>
+  <li>Searching tasks could crash the app when a task's text contained "İ".</li>
+  <li>Memories, Wiki and Design lists could show the previous query's results, or flash "No matches" mid-search.</li>
+  <li>Search errors are shown instead of a misleading "No matches".</li>
+  <li>Searches with punctuation, like <code>tasks,</code> or <code>(urgent)</code>, could fail.</li>
+  <li>An unregistered repository was treated as the "memophant" project; agent tools now refuse until the repo is added.</li>
+  <li>A misspelled project name or wrongly typed argument from an agent is refused instead of ignored.</li>
+  <li>Agent tools stopped responding after a mid-session license unlock.</li>
+  <li>Agent file writes refuse odd paths, and vendor names can't reach outside the vendors folder.</li>
+  <li>Cleaner anonymous analytics: each event counted once, development builds send nothing, opting out always wins (swift-stats 0.3.0).</li>
 </ul>
 ]]></description>
-            <enclosure url="https://github.com/awizemann/memophant-public/releases/download/v2.1.1/Memophant-v2.1.1-Universal.zip" length="55614462" type="application/octet-stream" sparkle:edSignature="P9xTGEUDtIZflGLkLmNQFYBxukgriVvVZz9AD8+fNOfmAcxdvLk97WZ0jS+Qk8Smhygwx4iK3Ldyy4wq1kjWDQ=="/>
+            <enclosure url="https://github.com/awizemann/memophant-public/releases/download/v3.1.0/Memophant-v3.1.0-Universal.zip" length="56080735" type="application/octet-stream" sparkle:edSignature="fFrXOu1IiBoCydX/VoX7P96X9BHxF3Q0/TWos35ez4ftwmQQEj+cAIwSdmMWRYSSTH8F+s+Fi2FKH2Zarr/yBQ=="/>
         </item>
     </channel>
 </rss>
