@@ -3,20 +3,44 @@
     <channel>
         <title>Memophant</title>
         <item>
-            <title>3.2.0</title>
-            <pubDate>Wed, 28 Oct 2026 11:02:24 -0400</pubDate>
-            <sparkle:version>16</sparkle:version>
-            <sparkle:shortVersionString>3.2.0</sparkle:shortVersionString>
+            <title>4.0.0</title>
+            <pubDate>Wed, 11 Nov 2026 12:11:33 -0500</pubDate>
+            <sparkle:version>17</sparkle:version>
+            <sparkle:shortVersionString>4.0.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h2>Memophant 3.2.0</h2>
-<p>Folders to organize your project sidebar.</p>
+            <description><![CDATA[<h2>Memophant 4.0.0</h2>
+<p>A repo agent that answers questions about your project and proposes fixes you approve, plus wiki and code pages that stay honest about the code they describe.</p>
 
 <h3>New</h3>
 <ul>
-  <li><strong>Sidebar folders.</strong> Create folders between Pinned and Projects. Drag projects onto a folder or use the new "Move to" menu (replaces Pin to Top / Unpin). Rename inline, collapse any section, delete empty folders. Folders sync across your Macs with iCloud.</li>
+  <li><strong>Repo agent.</strong> Ask questions about your project from the Agent button in the top bar. It reads your code, memory, wiki and tasks, cites its sources, and proposes fixes.</li>
+  <li><strong>Review before anything changes.</strong> Approve, reject or edit each proposed fix; nothing is written until you apply, and you can undo until you commit.</li>
+  <li>Agent conversations stay on this Mac and can be exported to Sessions.</li>
+  <li><strong>Documentation-first wiki generator.</strong> Pages are written from your code and linked to the files they describe. Text you wrote is merged, never replaced.</li>
+  <li><strong>Review anchors.</strong> Confirm suggested code links for existing wiki and code pages from the review inbox, or mark a page "Not tied to code".</li>
+  <li><strong>Verified button</strong> on a page flagged because its code changed.</li>
+  <li><strong>"Not tied to code"</strong> pages never raise drift warnings.</li>
+  <li>Wiki reading aids: an "On this page" outline, Mermaid diagrams, a reworked sidebar and a broken-link checker.</li>
+  <li>Add Folder / Add Project buttons under the sidebar logo.</li>
+</ul>
+
+<h3>Improved</h3>
+<ul>
+  <li>Reindexing code no longer freezes the app and is about 10x faster.</li>
+  <li>Far fewer false drift warnings: only pages linked to code that actually changed are flagged.</li>
+  <li>Code overviews link to specific files, and Update refreshes every affected page.</li>
+  <li>The Code section opens on Notes.</li>
+</ul>
+
+<h3>Fixed</h3>
+<ul>
+  <li>Updating code overviews no longer flags pages as duplicates of themselves; Approve All works.</li>
+  <li>Updates never replace a page the AI didn't read in full or one you just edited.</li>
+  <li>Page actions can no longer resize the window.</li>
+  <li>Adding an already-synced project links to it instead of duplicating it.</li>
 </ul>
 ]]></description>
-            <enclosure url="https://github.com/awizemann/memophant-public/releases/download/v3.2.0/Memophant-v3.2.0-Universal.zip" length="56232149" type="application/octet-stream" sparkle:edSignature="R0FCBw00v8g/s604wu3yXlVWhU6wnrXc8C5SWgOOIejSpFTAeQutu54j/FAup90Zf869K6TsTDhCJYHZU1dtCg=="/>
+            <enclosure url="https://github.com/awizemann/memophant-public/releases/download/v4.0.0/Memophant-v4.0.0-Universal.zip" length="60222425" type="application/octet-stream" sparkle:edSignature="VBgxY/8eAwRlgkDAOuZ4qefaQCNG6WeVcZSUw1/ZqL1ECq0SGh7FzquYyq3ddWJmuNOllOcVNFjHfUDLgvzwCg=="/>
         </item>
     </channel>
 </rss>
